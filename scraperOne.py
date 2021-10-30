@@ -21,10 +21,12 @@ def get_images_from_google(wd, delay, max_images):
     image_urls = set()
     skips = 0
 
-    while len(image_urls) < max_images:
+    while len(image_urls) + skips < max_images:
         scroll_down(wd)
 
-        thumbnails = wd.find_elements(By.CLASS_NAME, "rg_i Q4LuWd")
+        thumbnails = wd.find_elements(By.CLASS_NAME, "Q4LuWd")
+
+        # TODO: clicking right image? correct class name?
 
         for img in thumbnails[len(image_urls): max_images]:
             try:
@@ -61,6 +63,7 @@ def download_image(download_path, url, file_name):
 
 urls = get_images_from_google(wd, 2, 3)
 
-print(urls)
+for i, url in enumerate(urls):
+    download_image("imagesDir/", url, str(i) + ".jpg")
 
 wd.quit()
