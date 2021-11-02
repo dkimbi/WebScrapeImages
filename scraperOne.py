@@ -61,7 +61,7 @@ def download_image(download_path, url, file_name):
 
 # download_image("", image_url, "testing.jpg")
 
-urls = get_images_from_google(wd, 2, 3)
+urls = get_images_from_google(wd, 2, 5)
 
 for i, url in enumerate(urls):
     download_image("imagesDir/", url, str(i) + ".jpg")
